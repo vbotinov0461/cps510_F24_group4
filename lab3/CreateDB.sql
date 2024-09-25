@@ -1,21 +1,14 @@
--- Create an ENUM type for application status
-CREATE TYPE applicationStatus AS ENUM (
-    'pending',
-    'reviewed',
-    'accepted',
-    'rejected'
-);
-
 -- Create the Application table
 CREATE TABLE Application (
-    jobseeker_id INT,
+    job_seeker_id INT,
     job_id INT,
-    resume TEXT NOT NULL,
-    coverletter TEXT,
-    status applicationStatus,
+    resume CLOB NOT NULL,
+    coverletter CLOB,
+    status VARCHAR2(255) DEFAULT 'pending',
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (jobseeker_id, job_id),
-    FOREIGN KEY (jobseeker_id) REFERENCES JobSeeker(jobseeker_id),
+    CONSTRAINT status_check CHECK (status IN ('pending', 'reviewed', 'accepted', 'rejected')),
+    PRIMARY KEY (job_seeker_id, job_id),
+    FOREIGN KEY (job_seeker_id) REFERENCES JobSeeker(job_seeker_id),
     FOREIGN KEY (job_id) REFERENCES Job(job_id)
 );
 
@@ -41,4 +34,48 @@ CREATE TABLE JobSkills (
     PRIMARY KEY (skill_name, job_id),
     FOREIGN KEY (skill_name) REFERENCES Skills(skill_name),
     FOREIGN KEY (job_id) REFERENCES Job(job_id)
+);
+
+-- Create the Employer table
+CREATE TABLE employer (
+    employer_name VARCHAR2(50) NOT NULL,
+    email VARCHAR2(50),
+    password VARCHAR2(28),
+    industry_Name VARCHAR2(50),
+    Created_Date DATE DEFAULT CURRENT_DATE,
+    PRIMARY KEY (Employer_Name)
+);
+
+-- Create the Education table
+CREATE TABLE education (
+    Education_Id INT NOT NULL,
+    Education_Type VARCHAR2(50),
+    Education_Lvl VARCHAR2(50),
+    School_Name VARCHAR2(50),
+    PRIMARY KEY (Education_Id)
+);
+
+-- Create the Jobseeker table
+CREATE TABLE jobseeker (
+    job_seeker_id INT NOT NULL,
+    Jobseeker_Name VARCHAR(50),
+    email VARCHAR2(50),
+    password VARCHAR2(28),
+    education_id INT,
+    created_date DATE DEFAULT CURRENT_DATE,
+    PRIMARY KEY (Job_seeker_Id),
+    FOREIGN KEY (Education_Id) REFERENCES education(Education_Id)
+);
+
+-- Create the Job table
+CREATE TABLE job(
+    job_title VARCHAR2(50),
+    job_id  INT NOT NULL,
+    location_name VARCHAR2(50),
+    salary INT,
+    job_description VARCHAR2(500),
+    Date_Posted DATE,
+    Employer_Name VARCHAR2(50),
+    PRIMARY KEY (Job_Id),
+    FOREIGN KEY (Employer_Name) REFERENCES employer(Employer_Name)
 );
