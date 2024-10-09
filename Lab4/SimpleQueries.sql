@@ -3,6 +3,10 @@ SELECT DISTINCT job_seeker_id
 FROM Application
 ORDER BY job_seeker_id ASC;
 
+-- Update application status of job_seeker_id 1 to reviewed
+UPDATE Application 
+SET status = 'reviewed' WHERE job_seeker_id = 1;
+
 -- Count the number of distinct skills required for each job by grouping by job_id
 SELECT job_id, COUNT(DISTINCT skill_name) AS distinct_skill_count
 FROM JobSkills
@@ -37,3 +41,12 @@ WHERE education_id = 2;
 SELECT j.Jobseeker_Name
 FROM education e, jobseeker j
 WHERE Education_Lvl = 'Master' AND e.Education_Id = j.Education_Id;
+
+-- Update school name for education_id 1 to York University
+UPDATE education 
+SET school_name = 'York University' WHERE education_id = 1;
+
+
+
+
+
