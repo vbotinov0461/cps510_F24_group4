@@ -1,8 +1,0 @@
---DROP TABLE application;
---DROP TABLE jobseekerskills;
---DROP TABLE jobskills;
---DROP TABLE skills;
---DROP TABLE job;
---DROP TABLE employer;
---DROP TABLE jobseeker;
---DROP TABLE education;
