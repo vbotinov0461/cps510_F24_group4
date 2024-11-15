@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobbankdb.PrimaryController">
+   <children>
+      <Label text = "[Primary View] Job Bank DB" />
+      <Button fx:id = "createButton" text = "Create Table" onAction = "#switchToSecondary"/>
+      <Button fx:id = "deleteButton" text = "Delete Table" onAction = "#switchToSecondary"/>
+      <Button fx:id = "updateButton" text = "Update Table" onAction = "#switchToSecondary"/>
+      <Button fx:id = "viewButton" text = "Create View" onAction = "#switchToSecondary"/>
+      <Button fx:id = "popButton" text = "Populate Database" onAction = "#switchToSecondary"/>
+      <Button fx:id = "queryButton" text = "Query Database" onAction = "#switchToSecondary"/>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
